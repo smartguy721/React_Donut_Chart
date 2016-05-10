@@ -1,4 +1,7 @@
+// import PointerLock from 'react-pointerlock';
+
 var hiddenFlag = false;
+
 var DonutChartBox = React.createClass({
 	loadChartDataFromServer: function() {
 		$.ajax({
@@ -22,15 +25,22 @@ var DonutChartBox = React.createClass({
 			}.bind(this)
 		});
 	},
+	onMouseMove: function(e) {
+		let {top, left} = $(".donut-chart").offset();
+		let posX = e.nativeEvent.clientX - left;
+		let posY = e.nativeEvent.clientY - top;
+		console.log(posX, posY);
+	},
 	getInitialState: function() {
 		return {data: []};
 	},
 	componentDidMount: function() {
+		// window.addEventListener('mousemove', this.calculateMousePosition);
 		this.loadChartDataFromServer();
 	},
 	render: function() {
 		return (
-			<div className="donut-chart">
+			<div className="donut-chart" onMouseMove={this.onMouseMove} >
 				<ChartList data={this.state.data} />
 			</div>
 		);
