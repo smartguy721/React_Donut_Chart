@@ -27,9 +27,13 @@ var DonutChartBox = React.createClass({
 	}
 });
 
+var total = 0;
+var endPortion = 0;
+
 var ChartList = React.createClass({
 	render: function() {
 		var sectionLabels = this.props.data.map(function(section) {
+			total += section.portion;
 			return (
 				<SectionLabel key={section.id} sectionId={section.id} >
 					{section.label}
@@ -37,8 +41,9 @@ var ChartList = React.createClass({
 			);
 		});
 		var sectionClips = this.props.data.map(function(section) {
+			endPortion += section.portion;
 			return (
-				<SectionClip key={section.id} sectionId={section.id} color={section.color} >
+				<SectionClip key={section.id} sectionId={section.id} color={section.color} portion={section.portion} endPortion={endPortion}>
 					{section.portion}
 				</SectionClip>
 			)
@@ -63,12 +68,14 @@ var SectionLabel = React.createClass({
 	}
 });
 
+
+
 var SectionClip = React.createClass({
 	render: function() {
 		
 		return (
-			<div id={"section" + this.props.sectionId} className="clip">
-				<div className="item" style={{background: this.props.color }} data-rel={this.props.children}></div>
+			<div id={"section" + this.props.sectionId} className="clip" style={{transform: "rotate(" + (this.props.endPortion - this.props.portion) * 360/total + "deg)" }}>
+				<div className="item" style={{background: this.props.color, transform: "rotate(" + this.props.portion * 360/total + "deg)" }} data-rel={this.props.children}></div>
 			</div>
 		)
 	}
