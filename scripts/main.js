@@ -1,6 +1,7 @@
 // import PointerLock from 'react-pointerlock';
 
 var hiddenFlag = false;
+var visibledLabelId = null;
 
 var DonutChartBox = React.createClass({
 	loadChartDataFromServer: function() {
@@ -14,7 +15,7 @@ var DonutChartBox = React.createClass({
 					console.error("The count of Sections should be in 1 ~ 20.");
 					throw new Error();
 				}
-				if(data.length > 8)
+				if(data.length > 5)
 				{
 					hiddenFlag = true;
 				}
@@ -30,6 +31,11 @@ var DonutChartBox = React.createClass({
 		const half = 100;
 		let posXFromCenter = e.nativeEvent.clientX - left - half;
 		let posYFromCenter = half - (e.nativeEvent.clientY - top);
+		
+		if(visibledLabelId) {
+			document.getElementsByClassName(visibledLabelId)[0].style.display = "none";
+		}
+
 		// console.log(posXFromCenter, posYFromCenter);
 		if (posXFromCenter * posXFromCenter + posYFromCenter * posYFromCenter < 70 * 70)
 		{
@@ -38,6 +44,17 @@ var DonutChartBox = React.createClass({
 		let deg = Math.atan2(posXFromCenter, posYFromCenter) * 180 / Math.PI;
 		deg = deg > 0 ? deg : 360 + deg;
 		console.log( deg + "deg");
+		var clips = $(".clip");
+		
+		for (let i = 0; i < clips.length; i++)
+		{
+			if ($(clips[i]).data("endportion") > deg)
+			{
+				visibledLabelId = clips[i].id.replace("section", "functional-name-");
+				document.getElementsByClassName(visibledLabelId)[0].style.display = "block";
+				return;
+			}
+		}
 	},
 	getInitialState: function() {
 		return {data: []};
@@ -48,7 +65,7 @@ var DonutChartBox = React.createClass({
 	},
 	render: function() {
 		return (
-			<div className="donut-chart" onMouseMove={this.onMouseMove} >
+			<div className="donut-chart" onMouseMove={ hiddenFlag? this.onMouseMove : ""} >
 				<ChartList data={this.state.data} />
 			</div>
 		);
@@ -101,7 +118,7 @@ var SectionLabel = React.createClass({
 	render: function() {
 		var middlePositionOfLabel = this.getCoordinates(100, 120, this.props.middlePortion);
 		return (
-			<span className={ "functional-name-" + this.props.sectionId } style={{ left: middlePositionOfLabel.x, top: middlePositionOfLabel.y, visibility: hiddenFlag ? "hidden" : "visible" }}>
+			<span className={ "functional-name-" + this.props.sectionId } style={{ left: middlePositionOfLabel.x, top: middlePositionOfLabel.y, display: hiddenFlag ? "none" : "block" }}>
 				{ this.props.children.toString() }
 			</span>
 		);
@@ -114,7 +131,7 @@ var SectionClip = React.createClass({
 	render: function() {
 		
 		return (
-			<div id={"section" + this.props.sectionId} className="clip" style={{transform: "rotate(" + (this.props.endPortion - this.props.portion) * 360/total + "deg)" }}>
+			<div id={"section" + this.props.sectionId} className="clip" data-endPortion={ this.props.endPortion * 360/total } style={{transform: "rotate(" + (this.props.endPortion - this.props.portion) * 360/total + "deg)" }}>
 				<div className="item" style={{background: this.props.color, transform: "rotate(" + this.props.portion * 360/total + "deg)" }} data-rel={this.props.children}></div>
 			</div>
 		)
