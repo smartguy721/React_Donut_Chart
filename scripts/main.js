@@ -1,3 +1,4 @@
+var hiddenFlag = false;
 var DonutChartBox = React.createClass({
 	loadChartDataFromServer: function() {
 		$.ajax({
@@ -5,6 +6,15 @@ var DonutChartBox = React.createClass({
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
+				if (data.length < 1 || data.length > 20)
+				{
+					console.error("The count of Sections should be in 1 ~ 20.");
+					throw new Error();
+				}
+				if(data.length > 8)
+				{
+					hiddenFlag = true;
+				}
 				this.setState({ data: data });
 			}.bind(this),
 			error: function(xhr, status, err) {
@@ -73,7 +83,7 @@ var SectionLabel = React.createClass({
 	render: function() {
 		var middlePositionOfLabel = this.getCoordinates(100, 120, this.props.middlePortion);
 		return (
-			<span className={ "functional-name-" + this.props.sectionId } style={{ left: middlePositionOfLabel.x, top: middlePositionOfLabel.y }}>
+			<span className={ "functional-name-" + this.props.sectionId } style={{ left: middlePositionOfLabel.x, top: middlePositionOfLabel.y, visibility: hiddenFlag ? "hidden" : "visible" }}>
 				{ this.props.children.toString() }
 			</span>
 		);
