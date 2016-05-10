@@ -1,0 +1,93 @@
+.block {
+  margin: 25px 25px 0 0;
+  border-radius: 5px;
+}
+
+.donut-chart {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 2rem auto;
+  border-radius: 100%
+}
+
+.donut-chart .center {
+  background: #fff;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  height: 140px;
+  width: 140px;
+  border-radius: 70px;
+}
+
+.clip {
+  border-radius: 50%;
+  clip: rect(0px, 200px, 200px, 100px);
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+[class^='functional-name-']{
+    position: absolute;
+    color: #000;
+    font-size: 1rem;
+    z-index: 9999;
+}
+.item {
+  border-radius: 50%;
+  clip: rect(0px, 100px, 200px, 0px);
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  font-family: monospace;
+  font-size: 1.5rem;
+}
+
+#section1 {
+  transform: rotate(0deg);
+}
+.functional-name-1 {
+    z-index: 9999;
+    top: -20px;
+}
+
+#section1 .item {
+  background-color: #4C698F;
+  transform: rotate(95deg);
+}
+
+#section2 {
+  transform: rotate(95deg);
+}
+.functional-name-2 {
+    right: -20px;
+}
+#section2 .item {
+  background-color: #99A9BF;
+  transform: rotate(85deg);
+}
+
+#section3 {
+  transform: rotate(180deg);
+}
+.functional-name-3 {
+    right: -10px;
+    bottom: -10px;
+}
+#section3 .item {
+  background-color: #C4CDDA;
+  transform: rotate(90deg);
+}
+
+#section4 {
+  transform: rotate(-90deg);
+}
+.functional-name-4 {
+  bottom: -20px;
+  left: -40px
+}
+#section4 .item {
+  background-color: #002960;
+  transform: rotate(95deg);
+}

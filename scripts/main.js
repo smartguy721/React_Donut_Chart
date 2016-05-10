@@ -31,14 +31,14 @@ var ChartList = React.createClass({
 	render: function() {
 		var sectionLabels = this.props.data.map(function(section) {
 			return (
-				<SectionLabel key={section.id}>
+				<SectionLabel key={section.id} sectionId={section.id}>
 					{section.label}
 				</SectionLabel>
 			);
 		});
 		var sectionClips = this.props.data.map(function(section) {
 			return (
-				<SectionClip key={section.id} sectionId={"section" + section.id}>
+				<SectionClip key={section.id} sectionId={section.id}>
 					{section.portion}
 				</SectionClip>
 			)
@@ -56,7 +56,7 @@ var ChartList = React.createClass({
 var SectionLabel = React.createClass({
 	render: function() {
 		return (
-			<span className="functional-name">
+			<span className={ "functional-name-" + this.props.sectionId }>
 				{ this.props.children.toString() }
 			</span>
 		);
@@ -67,8 +67,8 @@ var SectionClip = React.createClass({
 	render: function() {
 
 		return (
-			<div id={this.props.sectionId} className="clip">
-				<div class="item" data-rel={this.props.children}></div>
+			<div id={"section" + this.props.sectionId} className="clip">
+				<div className="item" data-rel={this.props.children}></div>
 			</div>
 		)
 	}
