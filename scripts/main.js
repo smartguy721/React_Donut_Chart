@@ -65,8 +65,8 @@ var ChartList = React.createClass({
 
 var SectionLabel = React.createClass({
 	getCoordinates(half, radius, middlePortion) {
-	    var x = half + radius * Math.sin(Math.PI * 2 * middlePortion / total);
-	    var y = half - radius * Math.cos(Math.PI * 2 * middlePortion / total);
+	    var x = half - 10 + radius * Math.sin(Math.PI * 2 * middlePortion / total);
+	    var y = half - 10 - radius * Math.cos(Math.PI * 2 * middlePortion / total);
 
 		return { x, y };
 	},
