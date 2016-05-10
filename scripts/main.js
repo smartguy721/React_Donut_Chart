@@ -27,7 +27,34 @@ var DonutChartBox = React.createClass({
 	}
 });
 
+var ChartLabelList = React.createClass({
+	render: function() {
+		var sectionLabels = this.props.data.map(function(section) {
+			return (
+				<SectionLabel key={section.id}>
+					{section.label}
+				</SectionLabel>
+			);
+		});
+		return (
+			<div className="label-list">
+				{ sectionLabels }
+			</div>
+		);
+	}
+});
+
+var SectionLabel = React.createClass({
+	render: function() {
+		return (
+			<span className="functional-name">
+				{ this.props.children.toString() }
+			</span>
+		);
+	}
+});
+
 ReactDOM.render(
-	<DonutChartBox />,
+	<DonutChartBox url="/api/data" />,
 	document.getElementById('donut-chart-block')
 );

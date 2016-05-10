@@ -2,14 +2,14 @@
   "name": "smartguy",
   "version": "1.0.0",
   "description": "Code from React Donut Chart",
-  "main": "scripts/server.js",
+  "main": "server.js",
   "dependencies": {
     "body-parser": "^1.4.3",
     "express": "^4.4.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node scripts/server.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

@@ -1,8 +1,6 @@
-{
-	"sections":[
-	    {"label":"Finance", "color":"green", "portion": 21},
-	    {"label":"Sales", "color":"blue", "portion": 39},
-	    {"label":"R&D", "color":"red", "portion": 31},
-	    {"label":"Operations", "color":"yellow", "portion": 9}
-	]
-}
+[
+    {"id":1, "label":"Finance", "color":"green", "portion": 21},
+    {"id":2, "label":"Sales", "color":"blue", "portion": 39},
+    {"id":3, "label":"R&D", "color":"red", "portion": 31},
+    {"id":4, "label":"Operations", "color":"yellow", "portion": 9}
+]
