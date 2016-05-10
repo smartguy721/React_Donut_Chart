@@ -53,7 +53,6 @@
 }
 
 #section1 .item {
-  background-color: #4C698F;
   transform: rotate(95deg);
 }
 
@@ -64,7 +63,6 @@
     right: -20px;
 }
 #section2 .item {
-  background-color: #99A9BF;
   transform: rotate(85deg);
 }
 
@@ -76,7 +74,6 @@
     bottom: -10px;
 }
 #section3 .item {
-  background-color: #C4CDDA;
   transform: rotate(90deg);
 }
 
@@ -88,6 +85,5 @@
   left: -40px
 }
 #section4 .item {
-  background-color: #002960;
   transform: rotate(95deg);
 }
