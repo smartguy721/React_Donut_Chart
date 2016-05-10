@@ -1,0 +1,28 @@
+{
+  "name": "smartguy",
+  "version": "1.0.0",
+  "description": "Code from React Donut Chart",
+  "main": "scripts/server.js",
+  "dependencies": {
+    "body-parser": "^1.4.3",
+    "express": "^4.4.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node scripts/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smartguy82/React_Donut_Chart.git"
+  },
+  "keywords": [
+    "react",
+    "donut-chart"
+  ],
+  "author": "SmartGuy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smartguy82/React_Donut_Chart/issues"
+  },
+  "homepage": "https://github.com/smartguy82/React_Donut_Chart#readme"
+}

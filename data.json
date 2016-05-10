@@ -3,6 +3,6 @@
 	    {"label":"Finance", "color":"green", "portion": 21},
 	    {"label":"Sales", "color":"blue", "portion": 39},
 	    {"label":"R&D", "color":"red", "portion": 31},
-	    {"label":"Operations", "color":"yellow", "portion": 9},
+	    {"label":"Operations", "color":"yellow", "portion": 9}
 	]
 }
