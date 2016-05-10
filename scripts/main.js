@@ -20,14 +20,14 @@ var DonutChartBox = React.createClass({
 	},
 	render: function() {
 		return (
-			<div className="dount-chart">
-				<ChartLabelList data={this.state.data} />
+			<div className="donut-chart">
+				<ChartList data={this.state.data} />
 			</div>
 		);
 	}
 });
 
-var ChartLabelList = React.createClass({
+var ChartList = React.createClass({
 	render: function() {
 		var sectionLabels = this.props.data.map(function(section) {
 			return (
@@ -36,9 +36,18 @@ var ChartLabelList = React.createClass({
 				</SectionLabel>
 			);
 		});
+		var sectionClips = this.props.data.map(function(section) {
+			return (
+				<SectionClip key={section.id} sectionId={"section" + section.id}>
+					{section.portion}
+				</SectionClip>
+			)
+		});
 		return (
 			<div className="label-list">
 				{ sectionLabels }
+				{ sectionClips }
+				<div className="center"></div>
 			</div>
 		);
 	}
@@ -51,6 +60,17 @@ var SectionLabel = React.createClass({
 				{ this.props.children.toString() }
 			</span>
 		);
+	}
+});
+
+var SectionClip = React.createClass({
+	render: function() {
+
+		return (
+			<div id={this.props.sectionId} className="clip">
+				<div class="item" data-rel={this.props.children}></div>
+			</div>
+		)
 	}
 });
 
