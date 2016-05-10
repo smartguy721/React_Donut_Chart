@@ -27,9 +27,17 @@ var DonutChartBox = React.createClass({
 	},
 	onMouseMove: function(e) {
 		let {top, left} = $(".donut-chart").offset();
-		let posX = e.nativeEvent.clientX - left;
-		let posY = e.nativeEvent.clientY - top;
-		console.log(posX, posY);
+		const half = 100;
+		let posXFromCenter = e.nativeEvent.clientX - left - half;
+		let posYFromCenter = half - (e.nativeEvent.clientY - top);
+		// console.log(posXFromCenter, posYFromCenter);
+		if (posXFromCenter * posXFromCenter + posYFromCenter * posYFromCenter < 70 * 70)
+		{
+			return;
+		}	
+		let deg = Math.atan2(posXFromCenter, posYFromCenter) * 180 / Math.PI;
+		deg = deg > 0 ? deg : 360 + deg;
+		console.log( deg + "deg");
 	},
 	getInitialState: function() {
 		return {data: []};
